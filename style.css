@@ -1,0 +1,149 @@
+/* --- Style dla Górnego Paska Nawigacyjnego --- */
+
+/* Stylizuje element 'body' dla czystego wyglądu */
+body {
+    margin: 0; /* Usuwa domyślny margines strony */
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Jasne tło strony */
+}
+
+/* Stylizuje Nagłówek (Górny Pasek) */
+header {
+    background-color: #000; /* Ciemne tło paska */
+    color: white; /* Biały kolor tekstu */
+    padding: 15px 20px; /* Wewnętrzny odstęp */
+    display: flex; /* Używa Flexbox do układania elementów */
+    justify-content: space-between; /* Rozmieszcza elementy na krańcach */
+    align-items: center; /* Centruje elementy w pionie */
+}
+
+/* Stylizuje logo/tytuł */
+.tytuł {
+    font-size: 1.5em; /* Większy rozmiar czcionki */
+    font-weight: bold;
+    text-decoration: none; /* Usuwa podkreślenie linku */
+    color: white;
+}
+
+/* Stylizuje listę nawigacyjną */
+nav ul {
+    list-style: none; /* Usuwa domyślne kropki listy */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Ustawia elementy listy w rzędzie */
+}
+
+/* Stylizuje pojedyncze elementy listy */
+nav ul li {
+    margin-left: 20px; /* Dodaje odstęp między elementami menu */
+}
+
+/* Stylizuje linki w menu */
+nav ul li a {
+    color: white;
+    text-decoration: none; /* Usuwa podkreślenie linku */
+    padding: 5px 10px;
+    transition: background-color 0.3s; /* Płynne przejście koloru */
+}
+
+/* Efekt najazdu myszą */
+nav ul li a:hover {
+    background-color: #999;
+    border-radius: 4px;
+}
+
+/* Styl dla głównej treści */
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.center {
+    text-align: center;
+}
+/* --- Dodatkowe style do style.css --- */
+
+/* Styl dla sekcji Hero (Wizytówka) */
+.hero-section {
+    padding: 80px 20px;
+    background-color: #e0e0e0; /* Jasne tło dla kontrastu */
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+/**/
+.hero-section h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Styl dla przycisku Call To Action */
+.cta-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #000; /* Ciemne tło, pasujące do paska nawigacji */
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #555;
+}
+
+/* Styl dla sekcji z Wyróżnionymi Artykułami (siatka) */
+.featured-content {
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.articles-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px; /* Odstęp między kartami */
+    flex-wrap: wrap; /* Zawijanie na mniejszych ekranach */
+}
+
+.feature-card {
+    flex-basis: 30%; /* Każda karta zajmuje około 1/3 szerokości */
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.bio-intro, .my-story, .skills {
+    padding: 20px;
+    border-radius: 8px;
+    /* Usunięto czarne, mocne ramki i chaotyczne cienie */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Ujednolicony, subtelny cień */
+    margin-bottom: 20px;
+}
+
+/* DODAJ NOWY STYL DLA LISTY UL WEWNĄTRZ SEKCJI SKILLS */
+.skills ul {
+    list-style: none; 
+    padding: 0; /* Usuwa domyślne wcięcie z lewej strony */
+    margin-top: 15px; /* Dodaje odstęp od nagłówka sekcji */
+}
+
+/* Możesz też dodać style dla samych elementów listy, aby wyglądały lepiej */
+.skills li {
+    margin-bottom: 5px;
+}
+.hightlight {
+    background-color: #333;
+    color: white;
+}

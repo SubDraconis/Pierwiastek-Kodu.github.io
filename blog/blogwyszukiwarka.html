@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blog - Pierwiastek Kodu</title>
+
+        <link rel="stylesheet" href="../style.css">
+        
+    </head>
+    <body>
+        <header>
+            <a href="../main.html" class="tytuł">Pierwiastek Kodu </a>
+            <nav>
+                <ul>
+                    <li><a href="../main.html">Strona Główna</a></li> 
+                    <li><a href="../o-mnie.html">O Mnie</a></li>
+                    <li><a href="blogwyszukiwarka.html">Blog</a></li> 
+                    <li><a href="../kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <h1 class="center">Wyszukaj Artykuły</h1>
+
+            <section class="search-section center">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Wpisz frazę, np. Python, HTML5, AI..." 
+                    onkeyup="filterPosts()"
+                >
+                <button onclick="filterPosts()">Szukaj</button>
+            </section>
+        
+            <section id="resultsContainer">
+                
+                <article 
+                    class="post-item" 
+                    data-title="Python Podstawy" 
+                    data-keywords="python, zmienne, typy, danych, wprowadzenie, start"
+                >
+                    <h3><a href="posty/WprowadzeniePy.html">Podstawy Pythona: Zmienne i Typy Danych</a></h3>
+                    <p class="post-meta">Opublikowano: 10.11.2025 | Kategoria: Python</p>
+                    <p>Krótki opis. Dowiemy się, jak deklarować zmienne i jakie podstawowe typy danych oferuje Python.</p>
+                    <a href="posty/WprowadzeniePy.html" class="read-more">Czytaj dalej &rarr;</a>
+                    <hr>
+                </article>
+                
+
+                <article 
+                    class="post-item" 
+                    data-title="HTML Semantyka" 
+                    data-keywords="html5, semantyka, znaczniki, header, nav, section, article, arrię"
+                >
+                    <h3><a href="posty/SemantykaHtml5.html">Semantyka HTML5 dla Profesjonalistów</a></h3>
+                    <p class="post-meta">Opublikowano: 05.11.2025 | Kategoria: HTML/CSS</p>
+                    <p>Głębokie zanurzenie w zaawansowane tagi HTML5, ARIA i sposoby poprawy dostępności Twojej strony.</p>
+                    <a href="posty/SemantykaHtml5.html" class="read-more">Czytaj dalej &rarr;</a>
+                    <hr>
+                </article>
+
+                <article 
+                    class="post-item" 
+                    data-title="JavaScript DOM" 
+                    data-keywords="javascript, dom, eventy, manipulacja, front-end"
+                >
+                    <h3><a href="posty/DomwJavascript.html">Jak manipulować DOM w JavaScript</a></h3>
+                    <p class="post-meta">Opublikowano: 20.10.2025 | Kategoria: JavaScript</p>
+                    <p>Nauka o najważniejszym API przeglądarki: Document Object Model.</p>
+                    <a href="posty/DomJavasript.html" class="read-more">Czytaj dalej &rarr;</a>
+                    <hr>
+                </article>
+                
+                
+
+                <article 
+                    class="post-item" 
+                    data-title="zaawansowany Flexbox" 
+                    data-keywords="html, flexbox, manipulacja, front-end"
+                >
+                    <h3><a href="posty/ZaawansowanyFlexbox.html">Zaawansowany Flexbox</a></h3>
+                    <p class="post-meta">Opublikowano: 21.10.2025 | Kategoria: HTML</p>
+                    <p>Opanuj elastyczne kontenery i stwórz responsywne układy bez wysiłku.</p>
+                    <a href="posty/ZaawansowanyFlexbox.html"class="read-more">Czytaj dalej &rarr;</a>
+                    <hr>
+                </article>
+            </section>
+            
+            <p id="noResults" style="display: none;">Nie znaleziono artykułów pasujących do kryteriów wyszukiwania.</p>
+
+        </main>
+
+        <script src="../search.js"></script>
+
+    </body>
+</html>

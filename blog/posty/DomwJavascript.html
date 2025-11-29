@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulacja DOM w JS - Pierwiastek Kodu</title>
+    
+    <link rel="stylesheet" href="../../style.css"> 
+
+    <style>
+        /* --- Style specyficzne dla artykułu --- */
+        .article-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .table-of-contents {
+            flex: 0 0 250px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        .table-of-contents h3 { margin-top: 0; color: #333; }
+        .table-of-contents ul { list-style: none; padding: 0; }
+        .table-of-contents li a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s;
+        }
+        .table-of-contents li a:hover { color: #007bff; }
+        .article-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .article-content h2, .article-content h3 {
+            margin-top: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .article-content p { line-height: 1.6; margin-bottom: 15px; }
+        .article-content code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .article-content pre {
+            background-color: #333 !important;
+            color: white !important;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../../main.html" class="tytuł">Pierwiastek Kodu </a>
+        <nav>
+            <ul>
+                <li><a href="../../main.html">Strona Główna</a></li> 
+                <li><a href="../../o-mnie.html">O Mnie</a></li>
+                <li><a href="../blogwyszukiwarka.html">Blog</a></li> 
+                <li><a href="../../kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="article-container">
+            <aside class="table-of-contents">
+                <h3>Spis Treści</h3>
+                <ul>
+                    <li><a href="#co-to-dom">1. Co to jest DOM?</a></li>
+                    <li><a href="#pobieranie">2. Pobieranie elementów</a></li>
+                    <li><a href="#modyfikacja">3. Zmiana treści i stylu</a></li>
+                    <li><a href="#eventy">4. Reagowanie na kliknięcia</a></li>
+                    <li><a href="#tworzenie">5. Dodawanie nowych elementów</a></li>
+                </ul>
+            </aside>
+
+            <article class="article-content">
+                <h1 class="center">Jak manipulować DOM w JavaScript</h1>
+                <p>JavaScript sam w sobie jest tylko silnikiem logicznym. Aby "ożywić" stronę internetową, musi on komunikować się z HTML-em. Do tego służy DOM (Document Object Model).</p>
+
+                <h2 id="co-to-dom">1. Co to jest DOM?</h2>
+                <p>DOM to reprezentacja Twojej strony HTML w formie drzewa obiektów, które JavaScript może czytać i zmieniać. Przeglądarka tworzy globalny obiekt <code class="hightlight">document</code>, który jest naszym punktem wejścia. </p>
+
+                <h2 id="pobieranie">2. Pobieranie elementów</h2>
+                <p>Aby zmienić element, najpierw musimy go "złapać". Najpopularniejszą metodą jest dzisiaj <code class="hightlight">querySelector</code>.</p>
+                <pre><code>
+// Pobiera element po ID
+const naglowek = document.getElementById('glowny-tytul');
+
+// Pobiera pierwszy znaleziony element pasujący do selektora CSS
+const przycisk = document.querySelector('.btn-primary');
+
+// Pobiera WSZYSTKIE elementy pasujące (zwraca listę)
+const wszystkieListy = document.querySelectorAll('li');
+                </code></pre>
+
+                <h2 id="modyfikacja">3. Zmiana treści i stylu</h2>
+                <p>Gdy mamy element w zmiennej, możemy go modyfikować:</p>
+                <pre><code>
+const box = document.querySelector('.box');
+
+// Zmiana tekstu
+box.innerText = "Nowy tekst!";
+// Zmiana HTML w środku
+box.innerHTML = "&lt;strong&gt;Pogrubiony tekst&lt;/strong&gt;";
+
+// Zmiana stylów (CSS)
+box.style.backgroundColor = "red";
+box.style.padding = "20px";
+                </code></pre>
+
+                <h2 id="eventy">4. Reagowanie na kliknięcia (Event Listeners)</h2>
+                <p>Strony są interaktywne dzięki "nasłuchiwaniu zdarzeń". Używamy do tego metody <code class="hightlight">addEventListener</code>.</p>
+                <pre><code>
+const guzik = document.querySelector('#mojGuzik');
+
+function pokazAlert() {
+    alert("Kliknięto mnie!");
+}
+
+// Dodajemy nasłuchiwacz na 'click'
+guzik.addEventListener('click', pokazAlert);
+                </code></pre>
+
+                <h2 id="tworzenie">5. Dodawanie nowych elementów</h2>
+                <p>Możemy tworzyć HTML "w locie", bez wpisywania go w plik .html:</p>
+                <pre><code>
+// 1. Stwórz element
+const nowyParagraf = document.createElement('p');
+
+// 2. Dodaj treść
+nowyParagraf.innerText = "To jest paragraf dodany przez JS.";
+
+// 3. "Przyklej" go do istniejącego elementu na stronie
+document.body.appendChild(nowyParagraf);
+                </code></pre>
+
+                <p class="center" style="margin-top: 50px;">
+                    <a href="../blogwyszukiwarka.html" class="cta-button">Wróć do Bloga</a>
+                </p>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

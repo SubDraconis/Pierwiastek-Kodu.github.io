@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaawansowany Flexbox - Pierwiastek Kodu</title>
+    
+    <link rel="stylesheet" href="../../style.css"> 
+
+    <style>
+        /* --- Style specyficzne dla artykułu (skopiowane z wzorca) --- */
+        .article-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .table-of-contents {
+            flex: 0 0 250px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+        }
+        .table-of-contents h3 { margin-top: 0; color: #333; }
+        .table-of-contents ul { list-style: none; padding: 0; }
+        .table-of-contents li a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s;
+        }
+        .table-of-contents li a:hover { color: #007bff; }
+        .article-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .article-content h2, .article-content h3 {
+            margin-top: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .article-content p { line-height: 1.6; margin-bottom: 15px; }
+        .article-content code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .article-content pre {
+            background-color: #333 !important;
+            color: white !important;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        /* Wizualizacja flexboxa dla przykładów */
+        .flex-demo {
+            display: flex;
+            background: #eee;
+            padding: 10px;
+            border-radius: 4px;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .flex-item {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../../main.html" class="tytuł">Pierwiastek Kodu </a>
+        <nav>
+            <ul>
+                <li><a href="../../main.html">Strona Główna</a></li> 
+                <li><a href="../../o-mnie.html">O Mnie</a></li>
+                <li><a href="../blogwyszukiwarka.html">Blog</a></li> 
+                <li><a href="../../kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="article-container">
+            <aside class="table-of-contents">
+                <h3>Spis Treści</h3>
+                <ul>
+                    <li><a href="#intro">1. Poza display: flex</a></li>
+                    <li><a href="#flex-grow">2. Flex Grow: Wypełnianie miejsca</a></li>
+                    <li><a href="#flex-shrink">3. Flex Shrink: Kurczenie się</a></li>
+                    <li><a href="#flex-basis">4. Flex Basis: Rozmiar bazowy</a></li>
+                    <li><a href="#shorthand">5. Skrót 'flex'</a></li>
+                    <li><a href="#wrap">6. Flex Wrap i Flow</a></li>
+                </ul>
+            </aside>
+
+            <article class="article-content">
+                <h1 class="center">Zaawansowany Flexbox: Kontrola Elementów</h1>
+                <p>Większość kursów kończy się na `justify-content` i `align-items`. Jednak prawdziwa moc Flexboxa leży w kontrolowaniu tego, jak poszczególne elementy (dzieci) zachowują się względem siebie. </p>
+
+                <h2 id="intro">1. Poza display: flex</h2>
+                <p>Gdy nadajemy kontenerowi `display: flex`, jego dzieci stają się "flex items". Domyślnie ustawiają się w rzędzie i nie zawijają. Ale co, jeśli chcemy, aby jeden element był szerszy od innych?</p>
+
+                <h2 id="flex-grow">2. Flex Grow: Wypełnianie miejsca</h2>
+                <p>Właściwość <code class="hightlight">flex-grow</code> określa, jak bardzo element powinien "urosnąć", aby wypełnić dostępne puste miejsce w kontenerze. Domyślna wartość to 0.</p>
+                <pre><code>
+.sidebar {
+    flex-grow: 1; /* Zajmie 1 część wolnego miejsca */
+}
+.content {
+    flex-grow: 3; /* Zajmie 3 razy więcej wolnego miejsca niż sidebar */
+}
+                </code></pre>
+
+                <h2 id="flex-shrink">3. Flex Shrink: Kurczenie się</h2>
+                <p>Właściwość <code class="hightlight">flex-shrink</code> to przeciwieństwo grow. Określa, jak szybko element ma się kurczyć, gdy brakuje miejsca (np. na telefonie). Domyślna wartość to 1 (elementy się kurczą).</p>
+                <p>Jeśli ustawisz <code class="hightlight">flex-shrink: 0</code>, element zachowa swój rozmiar nawet, jeśli będzie wystawał poza ekran.</p>
+
+                <h2 id="flex-basis">4. Flex Basis: Rozmiar bazowy</h2>
+                <p>Zamiast `width`, w Flexboxie używamy <code class="hightlight">flex-basis</code>. Definiuje on domyślny rozmiar elementu *zanim* zostanie rozciągnięty lub skurczony.</p>
+                <pre><code>
+.item {
+    flex-basis: 250px; /* Element chce mieć 250px */
+}
+                </code></pre>
+
+                <h2 id="shorthand">5. Skrót 'flex'</h2>
+                <p>Profesjonaliści rzadko piszą te trzy właściwości oddzielnie. Używamy skrótu `flex`:</p>
+                <pre><code>
+/* flex: grow shrink basis */
+.card {
+    flex: 1 1 300px;
+}
+/* Oznacza: Rozciągaj się, kurcz się, ale zacznij od 300px */
+                </code></pre>
+                
+                <h2 id="wrap">6. Flex Wrap i Flow</h2>
+                <p>Domyślnie Flexbox upycha wszystko w jednej linii. Aby tworzyć responsywne siatki (gridy), używamy <code class="hightlight">flex-wrap: wrap</code>.</p>
+                <pre><code>
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Elementy spadną do nowej linii, gdy braknie miejsca */
+    gap: 20px;
+}
+                </code></pre>
+                
+                <p class="center" style="margin-top: 50px;">
+                    <a href="../blogwyszukiwarka.html" class="cta-button">Wróć do Bloga</a>
+                </p>
+            </article>
+        </div>
+    </main>
+</body>
+</html>

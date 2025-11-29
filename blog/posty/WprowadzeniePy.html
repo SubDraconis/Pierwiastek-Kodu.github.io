@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wprowadzenie do Pythona - Pierwiastek Kodu</title>
+    
+    <link rel="stylesheet" href="../../style.css"> 
+
+    <style>
+        /* --- Style specyficzne dla artykułu --- */
+
+        /* Kontener dla artykułu i spisu treści */
+        .article-container {
+            display: flex; /* Używa Flexbox do układania obok siebie */
+            gap: 30px; /* Odstęp między spisem treści a artykułem */
+            margin-top: 30px;
+        }
+
+        /* Spis treści (lewa strona) */
+        .table-of-contents {
+            flex: 0 0 250px; /* Stała szerokość 250px, nie rozciąga się */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky; /* Przykleja spis treści podczas scrollowania */
+            top: 20px; /* Odległość od góry ekranu */
+            max-height: calc(100vh - 40px); /* Maksymalna wysokość, aby nie wychodził poza ekran */
+            overflow-y: auto; /* Dodaje scrollbar, jeśli spis treści jest za długi */
+        }
+
+        .table-of-contents h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .table-of-contents ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .table-of-contents li a {
+            text-decoration: none;
+            color: #000;
+            display: block; /* Sprawia, że cały obszar li jest klikalny */
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            transition: color 0.2s;
+        }
+
+        .table-of-contents li a:hover {
+            color: #007bff; /* Kolor akcentu przy najechaniu */
+        }
+
+        /* Główna treść artykułu (prawa strona) */
+        .article-content {
+            flex-grow: 1; /* Zajmuje całe dostępne miejsce */
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .article-content h2, .article-content h3 {
+            margin-top: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        .article-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .article-content code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .article-content pre {
+            background-color: #333 !important;/* Ciemne tło dla bloku kodu */
+            color: white !important; /* Biały kolor tekstu */
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="../../main.html" class="tytuł">Pierwiastek Kodu </a>
+        <nav>
+            <ul>
+                <li><a href="../../main.html">Strona Główna</a></li> 
+                <li><a href="../../o-mnie.html">O Mnie</a></li>
+                <li><a href="../blogwyszukiwarka.html">Blog</a></li> 
+                <li><a href="../../kontakt.html">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="article-container">
+            <aside class="table-of-contents">
+                <h3>Spis Treści</h3>
+                <ul>
+                    <li><a href="#co-to-python">1. Co to jest Python?</a></li>
+                    <li><a href="#instalacja">2. Instalacja Pythona</a></li>
+                    <li><a href="#pierwszy-program">3. Pierwszy Program: "Hello World!"</a></li>
+                    <li><a href="#zmienne-i-typy">4. Zmienne i Typy Danych</a></li>
+                    <li><a href="#operatory">5. Operatory</a></li>
+                    <li><a href="#podsumowanie">6. Podsumowanie</a></li>
+                </ul>
+            </aside>
+
+            <article class="article-content">
+                <h1 class="center">Wprowadzenie do Pythona dla Początkujących</h1>
+                <p>Python to jeden z najpopularniejszych języków programowania na świecie, ceniony za swoją prostotę i wszechstronność. W tym artykule przeprowadzimy Cię przez podstawy, od instalacji po tworzenie pierwszych linii kodu.</p>
+
+                <h2 id="co-to-python">1. Co to jest Python?</h2>
+                <p>Python to wysokopoziomowy, interpretowany język programowania ogólnego przeznaczenia. Oznacza to, że jest łatwy do czytania i pisania, a jego kod jest wykonywany linia po linii przez interpreter, bez potrzeby kompilacji do postaci maszynowej. Został stworzony przez Guido van Rossuma i po raz pierwszy wydany w 1991 roku.</p>
+                <p>Python jest wykorzystywany w wielu dziedzinach, takich jak:</p>
+                <ul>
+                    <li>Tworzenie stron internetowych (backend)</li>
+                    <li>Analiza danych i uczenie maszynowe (AI)</li>
+                    <li>Automatyzacja zadań</li>
+                    <li>Tworzenie gier</li>
+                    <li>Tworzenie aplikacji desktopowych</li>
+                </ul>
+
+                <h2 id="instalacja">2. Instalacja Pythona</h2>
+                <p>Zanim zaczniesz pisać kod, musisz zainstalować Pythona na swoim komputerze:</p>
+                <ol>
+                    <li>Odwiedź oficjalną stronę: <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads/</a></li>
+                    <li>Pobierz najnowszą stabilną wersję Pythona (zalecana jest wersja 3.x).</li>
+                    <li>Uruchom instalator. **Bardzo ważne:** Upewnij się, że zaznaczyłeś opcję "Add Python X.X to PATH" podczas instalacji (zwłaszcza na Windowsie).</li>
+                    <li>Po zakończeniu instalacji, otwórz terminal (lub Wiersz Poleceń/PowerShell) i wpisz: <code class="hightlight">python --version</code> lub <code class="hightlight">python3 --version</code>. Powinno wyświetlić zainstalowaną wersję.</li>
+                </ol>
+
+                <h2 id="pierwszy-program">3. Pierwszy Program: "Hello World!"</h2>
+                <p>Tradycją w programowaniu jest rozpoczęcie od programu "Hello World!". Otwórz edytor tekstu (np. VS Code) i utwórz nowy plik o nazwie <code class="hightlight">hello.py</code>. Wpisz w nim:</p>
+                <pre><code>print("Witaj, świecie Pythona!")</code></pre>
+                <p>Zapisz plik. Następnie, w terminalu, przejdź do katalogu, w którym zapisałeś plik, i uruchom go komendą:</p>
+                <pre><code  >python hello.py</code></pre>
+                <p>Na ekranie powinieneś zobaczyć napis "Witaj, świecie Pythona!". Gratulacje, napisałeś swój pierwszy program\!</p>
+
+                <h2 id="zmienne-i-typy">4. Zmienne i Typy Danych</h2>
+                <p>Zmienne służą do przechowywania danych. W Pythonie nie musisz deklarować typu zmiennej; interpreter sam go rozpozna.</p>
+                <pre><code>
+# Zmienna typu String (ciąg znaków)
+imie = "Anna"
+# Zmienna typu Integer (liczba całkowita)
+wiek = 30
+# Zmienna typu Float (liczba zmiennoprzecinkowa)
+wzrost = 1.75
+# Zmienna typu Boolean (prawda/fałsz)
+print(imie)          # Wyświetli: Anna
+print(wiek)          # Wyświetli: 30
+print(type(imie))    # Wyświetli: &lt;class 'str'&gt;
+print(type(wiek))    # Wyświetli: &lt;class 'int'&gt;
+                </code></pre>
+                <p>Główne typy danych w Pythonie to:</p>
+                <ul>
+                    <li><code class="hightlight">str</code> (string): Tekst, np. `"Hello"`</li>
+                    <li><code class="hightlight">int</code> (integer): Liczby całkowite, np. `10`, `-5`</li>
+                    <li><code class="hightlight">float</code> (floating-point number): Liczby zmiennoprzecinkowe, np. `3.14`, `-0.5`</li>
+                    <li><code class="hightlight">bool</code> (boolean): Wartości logiczne, `True` lub `False`</li>
+                </ul>
+
+                <h2 id="operatory">5. Operatory</h2>
+                <p>Operatory pozwalają wykonywać działania na zmiennych i wartościach.</p>
+                <h3>Operatory Arytmetyczne:</h3>
+                <pre><code>
+a = 10
+b = 3
+print(a + b) # Dodawanie: 13
+print(a - b) # Odejmowanie: 7
+print(a * b) # Mnożenie: 30
+print(a / b) # Dzielenie: 3.333...
+print(a // b) # Dzielenie całkowite: 3
+print(a % b) # Reszta z dzielenia (modulo): 1
+print(a ** b) # Potęgowanie: 1000 (10 do potęgi 3)
+                </code></pre>
+                <h3>Operatory Porównania:</h3>
+                <pre><code>
+x = 5
+y = 10
+print(x == y) # Równe?: False
+print(x != y) # Nierówne?: True
+print(x &lt; y)  # Mniejsze niż?: True
+print(x &gt; y)  # Większe niż?: False
+                </code></pre>
+
+                <h2 id="podsumowanie">6. Podsumowanie</h2>
+                <p>To były podstawy Pythona, które dadzą Ci solidny start. Pamiętaj, że kluczem do nauki programowania jest praktyka. Eksperymentuj z kodem, zmieniaj wartości, testuj różne operatory.</p>
+                <p>W kolejnych artykułach zagłębimy się w instrukcje warunkowe, pętle i funkcje.</p>
+
+                <p class="center" style="margin-top: 50px;">
+                    <a href="../blogwyszukiwarka.html" class="cta-button">Wróć do Bloga</a>
+                </p>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
